@@ -46,6 +46,8 @@ enum GameStates {
 
 
 export const GameMachine = GameModel.createMachine({
+  predictableActionArguments: true,
+
     id: 'game',
     initial: GameStates.LOBBY,
     states: {

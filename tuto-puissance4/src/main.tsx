@@ -7,9 +7,9 @@ import { GameMachine, GameModel } from './machine/GameMachine.ts'
 
 const machine = interpret(GameMachine).start()
 
-console.log(machine.send(GameModel.events.join('1','1')).changed)
-console.log(machine.send(GameModel.events.join('2','2')).changed)
-console.log(machine.send(GameModel.events.join('2','2')).changed)
+// console.log(machine.send(GameModel.events.join('1','1')).changed)
+// console.log(machine.send(GameModel.events.join('2','2')).changed)
+// console.log(machine.send(GameModel.events.join('2','2')).changed)
 
 
 
@@ -19,4 +19,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <App />
   </React.StrictMode>,
 )
+
+
 

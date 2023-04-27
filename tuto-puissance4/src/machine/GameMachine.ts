@@ -1,7 +1,8 @@
 import { createMachine } from 'xstate';
 import {createModel} from 'xstate/lib/model';
-
+import { joinGameAction } from './actions';
 import {GridState, Player,PlayerColor} from '../types';
+import { canJoinGuard } from './guards';
 
 
 
@@ -28,6 +29,8 @@ export const GameModel = createModel({
     dropToken: (playerId: Player["id"], x: number) => ({playerId, x}),
     restart: (playerId: Player["id"]) => ({playerId}),
     }
+
+
 })
 
 
@@ -49,6 +52,8 @@ export const GameMachine = GameModel.createMachine({
       [GameStates.LOBBY]: {
         on: {
           join: {
+            cond: canJoinGuard,
+            actions: [GameModel.assign(joinGameAction)],
             target: GameStates.LOBBY,
           },
           leave: {
@@ -86,3 +91,5 @@ export const GameMachine = GameModel.createMachine({
     },
   });
   
+
+

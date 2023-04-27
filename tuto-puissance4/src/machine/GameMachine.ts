@@ -1,8 +1,8 @@
 import { createMachine } from 'xstate';
 import {createModel} from 'xstate/lib/model';
-import { joinGameAction } from './actions';
+import { joinGameAction, leaveGameAction, chooseColorAction,switchPlayerAction } from './actions';
 import {GridState, Player,PlayerColor} from '../types';
-import { canJoinGuard } from './guards';
+ import { canJoinGuard, canLeaveGuard, canStartGameGuard, canChooseColorGuard} from './guards';
 
 
 
@@ -59,12 +59,18 @@ export const GameMachine = GameModel.createMachine({
             target: GameStates.LOBBY,
           },
           leave: {
+            cond: canLeaveGuard,
+            actions: [GameModel.assign(leaveGameAction)],
             target: GameStates.LOBBY,
           },
           chooseColor: {
-            target: GameStates.LOBBY,
+             cond: canChooseColorGuard,
+             actions: [GameModel.assign(chooseColorAction)],
+             target: GameStates.LOBBY,
           },
           start: {
+            cond: canStartGameGuard,
+            actions: [GameModel.assign(switchPlayerAction)],
             target: GameStates.PLAY,
           },
         },
@@ -93,5 +99,5 @@ export const GameMachine = GameModel.createMachine({
     },
   });
   
-
+  
 

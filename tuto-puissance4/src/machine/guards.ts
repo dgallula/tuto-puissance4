@@ -1,5 +1,5 @@
 import { GameContext, GameEvent, GameGuard,PlayerColor } from "../types";
-import {  freePositionY } from '../func/game'
+import {freePositionY} from '../func/game'
 
 
 
@@ -31,7 +31,6 @@ export const canJoinGuard: GameGuard<"join"> = (context, event) => {
     event.x >= 0 &&
     context.currentPlayer === event.playerId &&
     freePositionY(context.grid, event.x) >= 0
-
 
 }
 

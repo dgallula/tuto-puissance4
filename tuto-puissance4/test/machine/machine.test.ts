@@ -29,5 +29,3 @@ describe('machine/GameMachine', () => {
         })
     });
 });
-
-

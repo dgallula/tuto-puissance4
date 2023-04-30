@@ -36,4 +36,8 @@ react
 Typescript
 yarn add xstate
 
-
+git add .
+git commit -m " freepositionY37m ok"
+git remote add origin https://github.com/dgallula/tuto-puissance4
+git branch -M master
+git push -u origin master
